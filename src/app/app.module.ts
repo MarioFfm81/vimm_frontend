@@ -11,7 +11,8 @@ import { LoginComponent } from './login/login.component';
 
 
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MainComponent } from './main/main.component';
 import { ErrorInterceptor } from './error.interceptor';
@@ -31,7 +32,8 @@ import { ErrorInterceptor } from './error.interceptor';
     FormsModule,
     MatButtonModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCardModule
   ],
   exports: [
   ],

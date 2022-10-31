@@ -7,8 +7,9 @@ import { Component } from '@angular/core';
     <div style="text-align:center" class="content">
       <img width="300" src="/assets/under_construction.webp">
     </div>
-    
-    <router-outlet></router-outlet>
+    <div style="text-align: center;">
+      <router-outlet></router-outlet>
+    </div>
   `,
   styles: []
 })

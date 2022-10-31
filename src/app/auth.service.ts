@@ -51,7 +51,6 @@ export class AuthService {
     const httpOptions = {
       headers: headers_object
     };
-    console.log(localStorage.getItem('access-token'));
     return this.http.get(environment.apiUrl+'/protected', httpOptions);
   }
 }

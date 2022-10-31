@@ -8,12 +8,19 @@ import { LoginRequest } from '../LoginRequest';
 @Component({
   selector: 'app-login',
   templateUrl: 'login.component.html',
-  styles: [
-  ]
+  styles: [`
+    .error {
+      padding: 16px;
+      width: 268px;
+      color: white;
+      background-color: red;
+    }
+    `]
 })
 export class LoginComponent implements OnInit {
   public email: string;
   public password: string;
+  public error = "";
 
   constructor(private authService: AuthService,  private router: Router) { }
 
@@ -30,11 +37,11 @@ export class LoginComponent implements OnInit {
     console.log(loginRequest)
 
     this.authService.login(loginRequest)
-      .subscribe(data => {
+    .subscribe(data => {
         this.router.navigate([this.authService.INITIAL_PATH]);
       },
       error => {
-        
+        this.error = "Email oder Passwort sind inkorrekt";
       }
       );
       
