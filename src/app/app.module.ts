@@ -12,8 +12,9 @@ import { LoginComponent } from './login/login.component';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms'
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MainComponent } from './main/main.component';
+import { ErrorInterceptor } from './error.interceptor';
 
 
 @NgModule({
@@ -34,7 +35,9 @@ import { MainComponent } from './main/main.component';
   ],
   exports: [
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -30,7 +30,14 @@ export class LoginComponent implements OnInit {
     console.log(loginRequest)
 
     this.authService.login(loginRequest)
-      .subscribe((any) => this.router.navigate([this.authService.INITIAL_PATH]));
+      .subscribe(data => {
+        this.router.navigate([this.authService.INITIAL_PATH]);
+      },
+      error => {
+        
+      }
+      );
+      
   }
   test() {
     this.authService.test().subscribe();

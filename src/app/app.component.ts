@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
     <div style="text-align:center" class="content">
       <img width="300" src="/assets/under_construction.webp">
     </div>
-    <app-login>loading</app-login>
     
     <router-outlet></router-outlet>
   `,
