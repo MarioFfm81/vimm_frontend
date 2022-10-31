@@ -1,0 +1,19 @@
+<form>
+
+    <div class="header">Login to your account</div>
+  
+    <mat-form-field class="example-full-width" appearance="fill">
+        <input matInput type="email" placeholder="Email" name="email" autocomplete="off" [(ngModel)]="email" required>
+      </mat-form-field>
+    
+      <mat-form-field class="example-full-width" appearance="fill">
+        <input matInput placeholder="Password" value="" name="password" type="password" [(ngModel)]= "password">
+      </mat-form-field>
+  
+    <div class="actions">
+        <button mat-flat-button color="primary" type="submit" (click)="login()">Login</button>
+        <button mat-flat-button color="primary" (click)="test()">Login</button>
+      </div>
+  
+  </form>
+
