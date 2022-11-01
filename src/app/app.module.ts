@@ -16,13 +16,19 @@ import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MainComponent } from './main/main.component';
 import { ErrorInterceptor } from './error.interceptor';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { ExperimentComponent } from './experiment/experiment.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    MainComponent
+    MainComponent,
+    FileUploadComponent,
+    ExperimentComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +39,9 @@ import { ErrorInterceptor } from './error.interceptor';
     MatButtonModule,
     MatInputModule,
     HttpClientModule,
-    MatCardModule
+    MatCardModule,
+    MatIconModule,
+    MatProgressBarModule
   ],
   exports: [
   ],
