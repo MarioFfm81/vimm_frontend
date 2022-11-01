@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VimmService } from '../vimm.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-experiment',
@@ -19,7 +20,7 @@ export class ExperimentComponent implements OnInit {
     this.vimmService.currentExperiments.subscribe(img_path => {
       console.log("update img");
       if(img_path != '')
-        this.img_path = "http://localhost:5000/images/"+img_path;
+        this.img_path = environment.apiUrl+"/images/"+img_path;
     });
     
       
