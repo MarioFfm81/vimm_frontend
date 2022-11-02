@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { VimmService } from '../vimm.service';
 import { environment } from 'src/environments/environment';
+import { Experiment } from '../experiment';
 
 @Component({
   selector: 'app-experiment',
@@ -9,23 +10,13 @@ import { environment } from 'src/environments/environment';
   ]
 })
 export class ExperimentComponent implements OnInit {
-  experiment_id:string;
-  id: Number;
-  img_path: String;
-  kpis: Object;
+  @Input() experiment:Experiment;
+  img_path: string;
 
   constructor(private vimmService: VimmService) { }
 
   ngOnInit(): void {
-    this.vimmService.currentExperiments.subscribe(img_path => {
-      console.log("update img");
-      if(img_path != '')
-        this.img_path = environment.apiUrl+"/images/"+img_path;
-    });
-    
-      
-      //console.log(this.experiment);
-
+    this.img_path = environment.apiUrl+"/images/"+this.experiment.img_id
   }
 
 }

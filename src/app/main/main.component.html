@@ -1,7 +1,11 @@
 <button mat-flat-button color="primary" (click)="logout()">Ausloggen</button>
 <br>
 <hr />
-<app-experiment></app-experiment>
+<div style="width:100%">
+<div *ngFor="let exp of experiments">
+    <app-experiment [experiment]="exp"></app-experiment>
+</div>
+</div>
 <br>
 <hr />
 <app-file-upload></app-file-upload>

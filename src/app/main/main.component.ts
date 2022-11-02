@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { Experiment } from '../experiment';
+import { VimmService } from '../vimm.service';
 
 @Component({
   selector: 'app-main',
@@ -10,12 +12,18 @@ import { AuthService } from '../auth.service';
 })
 export class MainComponent implements OnInit {
 
-  experiments: Object;
+  experiments: Array<Experiment>;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private vimmService: VimmService, private router: Router) { }
 
   ngOnInit(): void {
     this.authService.test().subscribe();
+    this.vimmService.currentExperiments.subscribe((expArray:Array<Experiment>) => {
+      console.log("main");
+      console.log(expArray);
+      this.experiments = expArray;
+      console.log(this.experiments);
+    })
   }
 
   logout() {

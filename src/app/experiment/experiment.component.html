@@ -1,4 +1,15 @@
-<div style="height: 500px">
-
-<img [src]="img_path" />
-</div>
+<mat-card style="width:fit-content;margin: 2em;">
+    <mat-card-title>{{ experiment.remark }}</mat-card-title>
+    <mat-card-subtitle>{{ experiment.name }}</mat-card-subtitle>
+    <mat-card-content>
+        <img [src]="img_path" width="250px"/><br>
+        <div style="text-align: left;">
+            <table>
+                <tr *ngFor="let kpi of experiment.kpis | keyvalue">
+                    <td>{{ kpi.key }}</td><td>{{kpi.value}}</td>
+                </tr>
+            </table>
+        </div>
+        
+    </mat-card-content>
+</mat-card>

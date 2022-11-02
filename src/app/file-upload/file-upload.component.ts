@@ -2,6 +2,7 @@ import { HttpEventType } from '@angular/common/http';
 import { LocalizedString } from '@angular/compiler';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Experiment } from '../experiment';
 import { VimmService } from '../vimm.service';
 
 @Component({
@@ -48,7 +49,13 @@ export class FileUploadComponent implements OnInit {
           //localStorage.setItem('1', event.body);
           console.log(event);
           if(!(event.body===undefined)) {
-            this.vimmService.updateExperiments(event.body.img_id);
+            let exp = new Experiment;
+            exp.id = event.body.id;
+            exp.name = event.body.name;
+            exp.remark = event.body.remark;
+            exp.img_id = event.body.img_id;
+            exp.kpis = event.body.kpis;
+            this.vimmService.updateExperiments(exp);
           }          
           this.fileVariable.nativeElement.value='';
           this.filename='';
