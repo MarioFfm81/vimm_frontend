@@ -7,8 +7,7 @@ import { VimmService } from '../vimm.service';
 @Component({
   selector: 'app-main',
   templateUrl: `main.component.html`,
-  styles: [
-  ]
+  styleUrls: ['main.component.css']
 })
 export class MainComponent implements OnInit {
 
