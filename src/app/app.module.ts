@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +20,11 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ExperimentComponent } from './experiment/experiment.component';
+
+import { registerLocaleData  } from '@angular/common';
+import localeDe from '@angular/common/locales/de'
+
+registerLocaleData(localeDe);
 
 
 @NgModule({
@@ -46,7 +51,8 @@ import { ExperimentComponent } from './experiment/experiment.component';
   exports: [
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    {provide: LOCALE_ID, useValue: 'de'}
   ],
   bootstrap: [AppComponent]
 })

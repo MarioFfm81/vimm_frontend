@@ -35,4 +35,10 @@ export class VimmService {
     this.expArray.push(exp);
     this.experiments.next(this.expArray);
   }
+  removeExperiment(exp:Experiment) {
+    this.expArray.forEach((element, index) => {
+      if(element==exp ) this.expArray.splice(index, 1);
+    });
+    this.experiments.next(this.expArray);
+  }
 }

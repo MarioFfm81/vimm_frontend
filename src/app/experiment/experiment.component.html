@@ -2,14 +2,33 @@
     <mat-card-title>{{ experiment.remark }}</mat-card-title>
     <mat-card-subtitle>{{ experiment.name }}</mat-card-subtitle>
     <mat-card-content>
-        <img [src]="img_path" width="250px"/><br>
-        <div style="text-align: left;">
-            <table>
-                <tr *ngFor="let kpi of experiment.kpis | keyvalue">
-                    <td>{{ kpi.key }}</td><td>{{kpi.value}}</td>
-                </tr>
-            </table>
+        <div class="actions" style="text-align: right;">
+            <button mat-flat-button color="primary" (click)="removeExp()">Experiment entfernen</button>
         </div>
+        <table>
+            <tr>
+                <td>
+                    <img [src]="img_path" width="300px" style="border: 1px solid grey;"/><br>
+                </td>
+                <td>
+                    <img [src]="hist_path" width="300px"/><br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div style="text-align: left;">
+                        <table>
+                            <tr *ngFor="let kpi of experiment.kpis | keyvalue">
+                                <td>{{ map_kpi_key(kpi.key) }}</td><td style="text-align: right;">{{kpi.value | number:'':'de' }} </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        
+        
+        
         
     </mat-card-content>
 </mat-card>

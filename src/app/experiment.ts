@@ -3,5 +3,6 @@ export class Experiment {
     name?:string;
     remark?:string;
     img_id?: string;
+    hist_id?: string;
     kpis?: Object;
   }

@@ -55,6 +55,7 @@ export class FileUploadComponent implements OnInit {
             exp.remark = event.body.remark;
             exp.img_id = event.body.img_id;
             exp.kpis = event.body.kpis;
+            exp.hist_id = event.body.hist_id;
             this.vimmService.updateExperiments(exp);
           }          
           this.fileVariable.nativeElement.value='';
