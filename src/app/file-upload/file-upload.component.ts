@@ -1,5 +1,5 @@
 import { HttpEventType } from '@angular/common/http';
-import { LocalizedString } from '@angular/compiler';
+import { AstMemoryEfficientTransformer, LocalizedString } from '@angular/compiler';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Experiment } from '../experiment';
@@ -61,7 +61,10 @@ export class FileUploadComponent implements OnInit {
           this.fileVariable.nativeElement.value='';
           this.filename='';
         }
-      });
+      },
+      error => {
+        this.vimmService.deactivateSpinner();
+      },);
       
     }
   }

@@ -12,16 +12,17 @@ import { VimmService } from '../vimm.service';
 export class MainComponent implements OnInit {
 
   experiments: Array<Experiment>;
+  showSpinner = true;
 
   constructor(private authService: AuthService, private vimmService: VimmService, private router: Router) { }
 
   ngOnInit(): void {
     this.authService.test().subscribe();
     this.vimmService.currentExperiments.subscribe((expArray:Array<Experiment>) => {
-      console.log("main");
-      console.log(expArray);
       this.experiments = expArray;
-      console.log(this.experiments);
+    })
+    this.vimmService.loadNewData.subscribe(val => {
+      this.showSpinner = val;
     })
   }
 

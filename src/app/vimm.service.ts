@@ -11,12 +11,16 @@ export class VimmService {
   private expArray: Array<Experiment> = [];
   private experiments = new BehaviorSubject(this.expArray);
   currentExperiments = this.experiments.asObservable();
+  private gettingData = new BehaviorSubject(false);
+  loadNewData = this.gettingData.asObservable();
 
   constructor(private http: HttpClient) {
     console.log(this,this.expArray);
    }
 
   uploadFile(formData: FormData) {
+    this.gettingData.next(true);
+
     let headers_object = new HttpHeaders();
     //headers_object = headers_object.append('Content-Type', 'multipart/form-data');
     headers_object = headers_object.append('Authorization', 'Bearer ' + localStorage.getItem('access-token'));
@@ -28,13 +32,20 @@ export class VimmService {
     };
     console.log(formData);
     return this.http.post(environment.apiUrl+'/experiment', formData, httpOptions);
+    
 
   }
 
   updateExperiments(exp:Experiment) {
     this.expArray.push(exp);
     this.experiments.next(this.expArray);
+    this.gettingData.next(false);
   }
+
+  deactivateSpinner() {
+    this.gettingData.next(false);
+  }
+
   removeExperiment(exp:Experiment) {
     this.expArray.forEach((element, index) => {
       if(element==exp ) this.expArray.splice(index, 1);

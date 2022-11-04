@@ -22,7 +22,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ExperimentComponent } from './experiment/experiment.component';
 
 import { registerLocaleData  } from '@angular/common';
-import localeDe from '@angular/common/locales/de'
+import localeDe from '@angular/common/locales/de';
+import { SpinnerComponent } from './spinner/spinner.component'
 
 registerLocaleData(localeDe);
 
@@ -33,7 +34,8 @@ registerLocaleData(localeDe);
     LoginComponent,
     MainComponent,
     FileUploadComponent,
-    ExperimentComponent
+    ExperimentComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

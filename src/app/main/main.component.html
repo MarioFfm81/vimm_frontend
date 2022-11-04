@@ -1,14 +1,25 @@
-<div class="header">
-    <button mat-flat-button style="margin:10px;" color="primary" (click)="logout()">Ausloggen</button>
-</div>
 
-<div class="content" style="width:100%">
-<div *ngFor="let exp of experiments" style="display: inline-block;">
-    <app-experiment [experiment]="exp"></app-experiment>
-</div>
-</div>
-<div class="footer">
-    <div>
-        <app-file-upload></app-file-upload>
+<div class="wrapper">
+
+    <div [class.blurred]="showSpinner">
+        <div class="header">
+            <button mat-flat-button style="margin:10px;" color="primary" (click)="logout()">Ausloggen</button>
+        </div>
+
+        <div class="content" style="width:100%">
+        <div *ngFor="let exp of experiments" style="display: inline-block;">
+            <app-experiment [experiment]="exp"></app-experiment>
+        </div>
+        </div>
+        <div class="footer">
+            <div class="overlay" *ngIf="showSpinner">
+                <div class="spinner-wrapper">
+                    <app-spinner></app-spinner>
+                </div>
+            </div>
+            <div>
+                <app-file-upload></app-file-upload>
+            </div>
+        </div>
     </div>
 </div>
