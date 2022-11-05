@@ -1,0 +1,13 @@
+.history {
+    text-align: right;
+    color: grey;
+}
+
+.mark {
+    background-color: #fff0c4;
+    color: grey
+}
+
+.compMark {
+    background-color: #ff6262;
+}

@@ -7,7 +7,7 @@
                 <tr>
                     <td style="text-align: left;">
                         <div>
-                            GoPress V1.0
+                            GoPress V1.1
                         </div>
                     </td>
                     <td>
@@ -19,9 +19,49 @@
         </div>
 
         <div class="content" style="width:100%">
-        <div *ngFor="let exp of experiments" style="display: inline-block;">
-            <app-experiment [experiment]="exp"></app-experiment>
-        </div>
+            <div *ngIf="experiments?.length<=1">
+                <div *ngFor="let exp of experiments" style="display: inline-block;">
+                    <app-experiment [experiment]="exp" [small]="false"></app-experiment>
+                </div>
+            </div>
+            <div *ngIf="experiments?.length>1">
+                
+                <table width="100%">
+                    <tr style="vertical-align: top;">
+                        <td width="40%">
+                            <div>
+                                Zu vergleichendes Experiment:&nbsp;
+                                <select [(ngModel)]="active_index" (change)="getComparison()" name="sel1">
+                                    <option *ngFor="let exp of experiments; let i = index" value="{{i}}">{{ exp.name }}</option>
+                                </select>
+                            </div>
+                            <div>
+                                <app-experiment [experiment]="experiments[active_index]" [comparison]="comp" [small]="false"></app-experiment>
+                            </div>
+                            
+                        </td>
+                        <td>
+                            <div *ngIf="experiments?.length>2" style="text-align: left;padding-left: 50px;">
+                                <span>Durchschnittswerte der Vergleichsgruppe</span>
+                                <table width="500px">
+                                    <tr style="font-weight: bold;">
+                                        <td>Kennzahl</td>
+                                        <td style="text-align: right;">Wert</td>
+                                    </tr>
+                                    <tr *ngFor="let kpi of comp | keyvalue">
+                                        <td>{{vimmService.map_kpi_key(kpi.key)}}: </td>
+                                        <td style="text-align: right;">{{kpi.value | number:'':'de'}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div *ngFor="let exp of experiments; let i = index" style="display: inline-block;">
+                                <app-experiment *ngIf="experiments?.length>2 && i != active_index" [experiment]="exp" [small]="true"></app-experiment>
+                                <app-experiment *ngIf="experiments?.length<=2 && i != active_index" [experiment]="exp" [small]="false"></app-experiment>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
         <div class="footer">
             <div class="overlay" *ngIf="showSpinner">

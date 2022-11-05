@@ -1,7 +1,7 @@
 <mat-card style="width:fit-content;margin: 2em;">
     <mat-card-title>{{ experiment.remark }}</mat-card-title>
     <mat-card-subtitle>{{ experiment.name }}</mat-card-subtitle>
-    <mat-card-content>
+    <mat-card-content *ngIf="!small">
         <div class="actions" style="text-align: right;">
             <button mat-flat-button color="primary" (click)="removeExp()">Experiment entfernen</button>
         </div>
@@ -18,21 +18,35 @@
                     <img [src]="hist_path" width="300px"/><br>
                 </td>
             </tr>
-            <tr>
+            <tr style="font-weight: bold;">
                 <td style="text-align: left;">Kennzahl</td>
                 <td style="text-align: right;">Exeriment</td>
-                <td class="history">Durchschn. aller gespeicherten</td>
+                <td class="history">Durchschn. aller gespeicherten ({{ history['exp_counter'] }})</td>
             </tr>
             <tr *ngFor="let kpi of experiment.kpis | keyvalue">
                 <td style="text-align: left;">{{ map_kpi_key(kpi.key) }}</td>
-                <td style="text-align: right;">{{kpi.value | number:'':'de' }} </td>
-                <td class="history">{{ history[kpi.key] | number:'':'de' }}</td>
+                <td style="text-align: right;"><span [class.compMark]="!(comparison === undefined) && check_comp_deviation(kpi.key)">{{kpi.value | number:'':'de' }} </span></td>
+                <td class="history"><span [class.mark]="check_deviation(kpi.key)">{{ history[kpi.key] | number:'':'de' }} ({{(history[kpi.key]/kpi.value)-1 | percent:'1.1-1'}})</span></td>
             </tr>
                         
         </table>
-        
-        
-        
-        
+    </mat-card-content>
+
+    <mat-card-content *ngIf="small">
+        <div class="actions" style="text-align: center;">
+            <button mat-flat-button color="primary" (click)="removeExp()">Experiment entfernen</button>
+        </div>
+        <table>
+            <tr>
+                <td>
+                    <div style="border: 1px solid grey">
+                        <img src="../../assets/Mpa_Legend.JPG" height="200px" />
+                        <img [src]="img_path" width="200px"/><br>
+                    </div>
+                    
+                </td>
+            </tr>
+                        
+        </table>
     </mat-card-content>
 </mat-card>

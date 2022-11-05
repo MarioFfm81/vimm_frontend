@@ -54,4 +54,14 @@ export class VimmService {
     });
     this.experiments.next(this.expArray);
   }
+
+  map_kpi_key(key:string) {
+    if(key=="Affected10") return "Fläche (>10 Mpa) in %";
+    if(key=="Affected40") return "Fläche (>40 Mpa) in %";
+    if(key=="Sum") return "Gesamtdruck in Mpa";
+    if(key=="Max") return "Maximaldruck in Mpa";
+    if(key=="Average") return "Durchschnittlicher Druck in Mpa (für Werte >0)";
+
+    return key;
+  }
 }
