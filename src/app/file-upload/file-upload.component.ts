@@ -12,6 +12,11 @@ import { VimmService } from '../vimm.service';
     .file-input {
       display: none;
     }
+    .error {
+      white-space: pre-wrap;
+      color: white;
+      background-color: red;
+    }
   `
   ]
 })
@@ -23,6 +28,7 @@ export class FileUploadComponent implements OnInit {
   @ViewChild('fileUpload', {static: false})
   fileVariable: ElementRef;
   experiments = {};
+  errorMsg='';
 
   constructor(private vimmService: VimmService) { }
   
@@ -43,26 +49,31 @@ export class FileUploadComponent implements OnInit {
       this.uploadSub = this.vimmService.uploadFile(formData).subscribe((event:any) => {
         if(event.type == HttpEventType.UploadProgress) {
           this.uploadProgress = Math.round(100* (event.loaded / event.total));
-          console.log(this.uploadProgress)
         }
         if(event.status==200) {
           //localStorage.setItem('1', event.body);
-          console.log(event);
           if(!(event.body===undefined)) {
             let exp = new Experiment;
-            exp.id = event.body.id;
-            exp.name = event.body.name;
-            exp.remark = event.body.remark;
-            exp.img_id = event.body.img_id;
-            exp.kpis = event.body.kpis;
-            exp.hist_id = event.body.hist_id;
-            this.vimmService.updateExperiments(exp);
+            exp.id = event.body.experiment.id;
+            exp.name = event.body.experiment.name;
+            exp.remark = event.body.experiment.remark;
+            exp.img_id = event.body.experiment.img_id;
+            exp.kpis = event.body.experiment.kpis;
+            exp.hist_id = event.body.experiment.hist_id;
+            let hist = event.body.history;
+            this.vimmService.updateExperiments(exp, hist);
           }          
           this.fileVariable.nativeElement.value='';
           this.filename='';
         }
       },
       error => {
+        console.log(error);
+        if(error=='BAD REQUEST') {
+          this.errorMsg = "Es können nur .txt Dateien ausgewählt werden.";
+        }
+        else
+          this.errorMsg = "Die Datei konnte nicht verarbeitet werden.\nStellen Sie sicher, dass sie das richtige Format hat.";
         this.vimmService.deactivateSpinner();
       },);
       

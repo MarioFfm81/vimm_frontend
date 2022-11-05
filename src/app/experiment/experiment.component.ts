@@ -6,19 +6,26 @@ import { Experiment } from '../experiment';
 @Component({
   selector: 'app-experiment',
   templateUrl: 'experiment.component.html',
-  styles: [
+  styles: [`
+  .history {
+    text-align: right;
+    color: grey;
+  }
+  `
   ]
 })
 export class ExperimentComponent implements OnInit {
   @Input() experiment:Experiment;
   img_path: string;
   hist_path: string;
+  history: any;
 
   constructor(private vimmService: VimmService) { }
 
   ngOnInit(): void {
     this.img_path = environment.apiUrl+"/images/"+this.experiment.img_id
     this.hist_path = environment.apiUrl+"/images/"+this.experiment.hist_id
+    this.vimmService.kpi_hist.subscribe(hist => this.history = hist);
   }
 
   removeExp() {

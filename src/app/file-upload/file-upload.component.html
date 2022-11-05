@@ -3,27 +3,35 @@
 <div style="padding: 20px;">
 <input type="file" class="file-input" accept=".txt"
        (change)="onFileSelected($event)" #fileUpload>
+<table width="100%">
+  <tr>
+    <td width="400px" style="text-align: center;">
+      <div class="error" *ngIf="errorMsg">
+        {{ errorMsg }}
+      </div>
+      
+    </td>
+    <td>
+      <div class="file-upload">
 
-<div class="file-upload">
+        {{filename || "Datei zum Hochladen auswählen"}}
+     
+         <button mat-mini-fab color="primary" class="upload-btn"
+           (click)="fileUpload.click()">
+             <mat-icon>attach_file</mat-icon>
+         </button>
+         
+     </div>
+     <div class="progress">
+     
+       <mat-progress-bar class="progress-bar" mode="determinate"
+                         [value]="uploadProgress" *ngIf="uploadProgress">
+     
+       </mat-progress-bar>
+     </div>
+    </td>
+    <td width="5%">&nbsp;</td>
+  </tr>
+</table>
 
-   {{filename || "Datei zum Hochladen auswählen"}}
-
-    <button mat-mini-fab color="primary" class="upload-btn"
-      (click)="fileUpload.click()">
-        <mat-icon>attach_file</mat-icon>
-    </button>
-    
-</div>
-<div class="progress">
-
-  <mat-progress-bar class="progress-bar" mode="determinate"
-                    [value]="uploadProgress" *ngIf="uploadProgress">
-
-  </mat-progress-bar>
-<!--
-  <mat-icon class="cancel-upload" (click)="cancelUpload()" 
-            *ngIf="uploadProgress">delete_forever</mat-icon>
-  -->
-
-</div>
 </div>

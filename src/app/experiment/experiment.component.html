@@ -7,24 +7,28 @@
         </div>
         <table>
             <tr>
-                <td>
-                    <img [src]="img_path" width="300px" style="border: 1px solid grey;"/><br>
+                <td colspan="2">
+                    <div style="border: 1px solid grey">
+                        <img src="../../assets/Mpa_Legend.JPG" height="300px" />
+                        <img [src]="img_path" width="300px"/><br>
+                    </div>
+                    
                 </td>
                 <td>
                     <img [src]="hist_path" width="300px"/><br>
                 </td>
             </tr>
             <tr>
-                <td colspan="2">
-                    <div style="text-align: left;">
-                        <table>
-                            <tr *ngFor="let kpi of experiment.kpis | keyvalue">
-                                <td>{{ map_kpi_key(kpi.key) }}</td><td style="text-align: right;">{{kpi.value | number:'':'de' }} </td>
-                            </tr>
-                        </table>
-                    </div>
-                </td>
+                <td style="text-align: left;">Kennzahl</td>
+                <td style="text-align: right;">Exeriment</td>
+                <td class="history">Durchschn. aller gespeicherten</td>
             </tr>
+            <tr *ngFor="let kpi of experiment.kpis | keyvalue">
+                <td style="text-align: left;">{{ map_kpi_key(kpi.key) }}</td>
+                <td style="text-align: right;">{{kpi.value | number:'':'de' }} </td>
+                <td class="history">{{ history[kpi.key] | number:'':'de' }}</td>
+            </tr>
+                        
         </table>
         
         

@@ -1,9 +1,21 @@
 
 <div class="wrapper">
 
-    <div [class.blurred]="showSpinner">
+    <div>
         <div class="header">
-            <button mat-flat-button style="margin:10px;" color="primary" (click)="logout()">Ausloggen</button>
+            <table width="100%">
+                <tr>
+                    <td style="text-align: left;">
+                        <div>
+                            GoPress V1.0
+                        </div>
+                    </td>
+                    <td>
+                        <button mat-flat-button style="margin:10px;" color="primary" (click)="logout()">Ausloggen</button>
+                    </td>
+                </tr>
+            </table>
+            
         </div>
 
         <div class="content" style="width:100%">

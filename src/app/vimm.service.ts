@@ -13,6 +13,8 @@ export class VimmService {
   currentExperiments = this.experiments.asObservable();
   private gettingData = new BehaviorSubject(false);
   loadNewData = this.gettingData.asObservable();
+  private kpi_history = new BehaviorSubject({});
+  kpi_hist = this.kpi_history.asObservable();
 
   constructor(private http: HttpClient) {
     console.log(this,this.expArray);
@@ -30,16 +32,16 @@ export class VimmService {
       reportProgress: true,
       observe: 'events' as 'body'
     };
-    console.log(formData);
     return this.http.post(environment.apiUrl+'/experiment', formData, httpOptions);
     
 
   }
 
-  updateExperiments(exp:Experiment) {
+  updateExperiments(exp:Experiment, history:any) {
     this.expArray.push(exp);
     this.experiments.next(this.expArray);
     this.gettingData.next(false);
+    this.kpi_history.next(history);
   }
 
   deactivateSpinner() {
