@@ -1,33 +1,33 @@
-<div>
-  GoPress V1.1
+<div class="bg">
+  <div>
+    GoPress V1.1
+  </div>
+  <div>
+    <mat-card style="text-align: center; display: inline-block; width: 400px;position: absolute;margin-top: -150px;margin-left: -200px;top:50%;left:50%">
+      <mat-card-title>Einloggen</mat-card-title>
+      <mat-card-content>
+        <form (ngSubmit)="login()">
+          <p>
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 300px">
+              <input matInput type="email" placeholder="Email" name="email" autocomplete="off" [(ngModel)]="email" required>
+            </mat-form-field>
+          </p>
+  
+          <p>
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 300px">
+              <input matInput placeholder="Password" value="" name="password" type="password" [(ngModel)]= "password" required>
+            </mat-form-field>
+          </p>
+  
+          <p *ngIf="error" class="error">
+            {{ error }}
+          </p>
+        
+          <div class="actions" style="text-align: right;">
+            <button mat-flat-button color="primary" type="submit">Login</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
-
-<mat-card style="text-align: center; display: inline-block; width: 400px;position: absolute;margin-top: -150px;margin-left: -200px;top:50%;left:50%">
-  <mat-card-title>Einloggen</mat-card-title>
-  <mat-card-content>
-  <form (ngSubmit)="login()">
-
-    <p>
-      <mat-form-field class="example-full-width" appearance="fill" style="width: 300px">
-        <input matInput type="email" placeholder="Email" name="email" autocomplete="off" [(ngModel)]="email" required>
-      </mat-form-field>
-    </p>
-
-    <p>
-      <mat-form-field class="example-full-width" appearance="fill" style="width: 300px">
-        <input matInput placeholder="Password" value="" name="password" type="password" [(ngModel)]= "password" required>
-      </mat-form-field>
-    </p>
-
-    <p *ngIf="error" class="error">
-      {{ error }}
-    </p>
-  
-    <div class="actions" style="text-align: right;">
-      <button mat-flat-button color="primary" type="submit">Login</button>
-    </div>
-  
-  </form>
-  </mat-card-content>
-</mat-card>
-

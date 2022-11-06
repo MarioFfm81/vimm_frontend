@@ -1,6 +1,7 @@
 <mat-card style="width:fit-content;margin: 2em;">
     <mat-card-title>{{ experiment.remark }}</mat-card-title>
     <mat-card-subtitle>{{ experiment.name }}</mat-card-subtitle>
+    <hr>
     <mat-card-content *ngIf="!small">
         <div class="actions" style="text-align: right;">
             <button mat-flat-button color="primary" (click)="removeExp()">Experiment entfernen</button>
@@ -8,7 +9,7 @@
         <table>
             <tr>
                 <td colspan="2">
-                    <div style="border: 1px solid grey">
+                    <div style="border: 1px solid grey; width:350px">
                         <img src="../../assets/Mpa_Legend.JPG" height="300px" />
                         <img [src]="img_path" width="300px"/><br>
                     </div>

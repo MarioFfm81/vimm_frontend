@@ -8,14 +8,7 @@ import { LoginRequest } from '../LoginRequest';
 @Component({
   selector: 'app-login',
   templateUrl: 'login.component.html',
-  styles: [`
-    .error {
-      padding: 16px;
-      width: 268px;
-      color: white;
-      background-color: red;
-    }
-    `]
+  styleUrls: ['login.component.css']
 })
 export class LoginComponent implements OnInit {
   public email: string;

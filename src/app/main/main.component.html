@@ -30,33 +30,36 @@
                     <tr style="vertical-align: top;">
                         <td width="40%">
                             <div>
-                                Zu vergleichendes Experiment:&nbsp;
-                                <select [(ngModel)]="active_index" (change)="getComparison()" name="sel1">
-                                    <option *ngFor="let exp of experiments; let i = index" value="{{i}}">{{ exp.name }}</option>
-                                </select>
+                                <div>
+                                    <span style="color: #673AB7; font-weight: bold;">Zu vergleichendes Experiment:&nbsp;</span>
+                                    <select [(ngModel)]="active_index" (change)="getComparison()" name="sel1">
+                                        <option *ngFor="let exp of experiments; let i = index" value="{{i}}">{{ exp.remark }} ({{ exp.name }})</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <app-experiment [experiment]="experiments[active_index]" [comparison]="comp" [small]="false"></app-experiment>
+                                </div>
                             </div>
-                            <div>
-                                <app-experiment [experiment]="experiments[active_index]" [comparison]="comp" [small]="false"></app-experiment>
-                            </div>
-                            
                         </td>
                         <td>
-                            <div *ngIf="experiments?.length>2" style="text-align: left;padding-left: 50px;">
-                                <span>Durchschnittswerte der Vergleichsgruppe</span>
-                                <table width="500px">
-                                    <tr style="font-weight: bold;">
-                                        <td>Kennzahl</td>
-                                        <td style="text-align: right;">Wert</td>
-                                    </tr>
-                                    <tr *ngFor="let kpi of comp | keyvalue">
-                                        <td>{{vimmService.map_kpi_key(kpi.key)}}: </td>
-                                        <td style="text-align: right;">{{kpi.value | number:'':'de'}}</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div *ngFor="let exp of experiments; let i = index" style="display: inline-block;">
-                                <app-experiment *ngIf="experiments?.length>2 && i != active_index" [experiment]="exp" [small]="true"></app-experiment>
-                                <app-experiment *ngIf="experiments?.length<=2 && i != active_index" [experiment]="exp" [small]="false"></app-experiment>
+                            <div>
+                                <div *ngIf="experiments?.length>2" style="text-align: left;padding-left: 50px;">
+                                    <span style="color: #673AB7; font-weight: bold;">Durchschnittswerte der Vergleichsgruppe</span>
+                                    <table width="500px" style="background-color: white;">
+                                        <tr style="font-weight: bold;">
+                                            <td>Kennzahl</td>
+                                            <td style="text-align: right;">Wert</td>
+                                        </tr>
+                                        <tr *ngFor="let kpi of comp | keyvalue">
+                                            <td>{{vimmService.map_kpi_key(kpi.key)}}: </td>
+                                            <td style="text-align: right;">{{kpi.value | number:'':'de'}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div *ngFor="let exp of experiments; let i = index" style="display: inline-block;">
+                                    <app-experiment *ngIf="experiments?.length>2 && i != active_index" [experiment]="exp" [small]="true"></app-experiment>
+                                    <app-experiment *ngIf="experiments?.length<=2 && i != active_index" [experiment]="exp" [small]="false"></app-experiment>
+                                </div>
                             </div>
                         </td>
                     </tr>
