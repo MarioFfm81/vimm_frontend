@@ -19,15 +19,17 @@
                     <img [src]="hist_path" width="300px"/><br>
                 </td>
             </tr>
+        </table>
+        <table width="100%">
             <tr style="font-weight: bold;">
-                <td style="text-align: left;">Kennzahl</td>
-                <td style="text-align: right;">Exeriment</td>
-                <td class="history">Durchschn. aller gespeicherten ({{ history['exp_counter'] }})</td>
+                <td style="text-align: left;" width="33%">Kennzahl</td>
+                <td style="text-align: right;" width="33%">Exeriment (Abw. zur Referenz)</td>
+                <td class="history" width="33%">Referenz</td>
             </tr>
             <tr *ngFor="let kpi of experiment.kpis | keyvalue">
-                <td style="text-align: left;">{{ map_kpi_key(kpi.key) }}</td>
-                <td style="text-align: right;"><span [class.compMark]="!(comparison === undefined) && check_comp_deviation(kpi.key)">{{kpi.value | number:'':'de' }} </span></td>
-                <td class="history"><span [class.mark]="check_deviation(kpi.key)">{{ history[kpi.key] | number:'':'de' }} ({{(history[kpi.key]/kpi.value)-1 | percent:'1.1-1'}})</span></td>
+                <td style="text-align: left;white-space: pre-wrap">{{ map_kpi_key(kpi.key) }}</td>
+                <td style="text-align: right;"><span [class.compMark]="check_deviation(kpi.key)" [class.good]="!check_deviation(kpi.key)">{{kpi.value | number:'':'de' }} ({{(kpi.value/history[kpi.key])-1 | percent:'1.1-1'}}) </span></td>
+                <td class="history"><span>{{ history[kpi.key] | number:'':'de' }} </span></td>
             </tr>
                         
         </table>

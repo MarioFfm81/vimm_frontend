@@ -8,6 +8,11 @@
     color: grey
 }
 
+.good {
+    background-color: #49a66a;
+    color: black;
+}
+
 .compMark {
     background-color: #ff6262;
 }

@@ -60,8 +60,11 @@ export class VimmService {
     if(key=="Affected40") return "Fläche (>40 Mpa) in %";
     if(key=="Sum") return "Gesamtdruck in Mpa";
     if(key=="Max") return "Maximaldruck in Mpa";
-    if(key=="AverageNonZero") return "Durchschnittlicher Druck in Mpa (für Werte >0)";
+    if(key=="Load") return "Belastung in N";
+    if(key=="AverageNonZero") return "Ø Druck in Mpa (für Werte >0)";
+    if(key=="AverageGT10") return "Ø Druck in Mpa (für Werte >10)";
 
     return key;
   }
+
 }
