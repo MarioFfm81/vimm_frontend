@@ -7,6 +7,9 @@
     "build": "ng build"
   },
   "private": true,
+  "engines": {
+    "npm": "^7.5.6"
+  },
   "dependencies": {
     "@angular/animations": "~11.2.3",
     "@angular/cdk": "^11.2.13",
