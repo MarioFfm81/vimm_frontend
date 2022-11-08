@@ -25,8 +25,8 @@ import { registerLocaleData  } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import { SpinnerComponent } from './spinner/spinner.component';
 
-import { Angular2CsvModule } from 'angular2-csv';
-import { Angular2csvComponent } from './angular2csv/angular2csv.component';
+
+
 
 registerLocaleData(localeDe);
 
@@ -38,8 +38,7 @@ registerLocaleData(localeDe);
     MainComponent,
     FileUploadComponent,
     ExperimentComponent,
-    SpinnerComponent,
-    Angular2csvComponent
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -52,8 +51,7 @@ registerLocaleData(localeDe);
     HttpClientModule,
     MatCardModule,
     MatIconModule,
-    MatProgressBarModule,
-    Angular2CsvModule
+    MatProgressBarModule
   ],
   exports: [
   ],

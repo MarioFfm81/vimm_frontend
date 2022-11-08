@@ -11,9 +11,7 @@
                         </div>
                     </td>
                     <td>
-                        <app-angular2csv *ngIf="experiments?.length>=1" [data]="data" filename="ExperimentDaten.csv" [options]="options">
-                            <button mat-flat-button style="margin:10px;" color="primary">Experimentdaten als csv herunterladen</button>
-                        </app-angular2csv>
+                        <button mat-flat-button *ngIf="experiments?.length>=1" style="margin:10px;" (click)="csvDownload()" color="primary">Experimentdaten als csv herunterladen</button>
                         
                     </td>
                     <td><button mat-flat-button style="margin:10px;" color="primary" (click)="logout()">Ausloggen</button></td>

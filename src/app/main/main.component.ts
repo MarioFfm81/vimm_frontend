@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { Experiment } from '../experiment';
 import { VimmService } from '../vimm.service';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-main',
@@ -28,6 +29,7 @@ export class MainComponent implements OnInit {
     removeNewLines: true
   };
   data: Array<{}> = [];
+  data_str: string = '';
 
   constructor(private authService: AuthService, private vimmService: VimmService, private router: Router) { }
 
@@ -66,25 +68,34 @@ export class MainComponent implements OnInit {
   }
 
   update_data() {
-    this.data = [];
-    let counter = 1;
-    let row = {};
-    row[counter.toString()] = ' ';
+    this.data_str='';
     this.experiments.forEach(exp => {
-      counter+=1;
-      row[counter.toString()] = exp.name;
+      this.data_str += ';'+exp.name;
     })
-    this.data.push(row);
     for (let key in this.comp) {
+      this.data_str += '\n';
       let row = {};
       let counter = 1;
       row[counter.toString()] = this.vimmService.map_kpi_key(key);
+      this.data_str += this.vimmService.map_kpi_key(key);
       this.experiments.forEach(exp => {
         counter+=1;
         row[counter.toString()] = exp.kpis[key];
+        this.data_str += ';'+exp.kpis[key].toString().replace(".",',');
       })
+      
       this.data.push(row);
     }
+  }
+
+  csvDownload() {
+    this.exportFile(this.data_str, 'text/csv;charset=utf-8');
+  }
+
+  exportFile(data: any, fileType: string) {
+    data = "\uFEFF" + data;
+    const blob = new Blob([data], {type: fileType});
+    FileSaver.saveAs(blob, 'Experimentdaten');
   }
 
 }
