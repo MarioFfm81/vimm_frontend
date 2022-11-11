@@ -59,3 +59,12 @@ select {
     padding-left: 18px;
     padding-right: 30px;
 }
+
+.logoHeader {
+    height: 60px;
+}
+
+.logo {
+    margin-top: -40px;
+    height: 130px;
+}
