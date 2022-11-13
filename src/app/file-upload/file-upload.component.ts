@@ -41,6 +41,7 @@ export class FileUploadComponent implements OnInit {
 
   onFileSelected(event) {
     const file:File = event.target.files[0];
+    this.errorMsg='';
     
     if (file) {
       this.filename = file.name;
@@ -65,7 +66,6 @@ export class FileUploadComponent implements OnInit {
           }          
           this.fileVariable.nativeElement.value='';
           this.filename='';
-          this.errorMsg='';
         }
       },
       error => {
