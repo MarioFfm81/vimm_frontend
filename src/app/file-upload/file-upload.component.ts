@@ -65,6 +65,7 @@ export class FileUploadComponent implements OnInit {
           }          
           this.fileVariable.nativeElement.value='';
           this.filename='';
+          this.errorMsg='';
         }
       },
       error => {
